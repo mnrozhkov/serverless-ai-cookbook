@@ -189,18 +189,22 @@ printf '%s' "$ENDPOINT_TOKEN" > /secure/flux2-endpoint-token
 unset ENDPOINT_TOKEN
 ```
 
-Resolve the address from the redacted status saved by deployment:
+In the endpoint details, copy the public HTTPS tunnel URL and keep the exact
+FQDN. Do not use the IP address in `status.public_endpoints`: HTTP access over
+public IPs is being retired. The URL has this form (copy it rather than
+constructing it):
 
 ```bash
-export ENDPOINT_ADDRESS="$(jq -r '.status.public_endpoints[0]' "$STATE_DIR/endpoint-public.json")"
+export ENDPOINT_URL="https://port8000-<endpoint-tunnel-id>.tunnel.applications.<region>.nebius.cloud"
 ```
 
 Run readiness plus one image generation. Use a prompt appropriate for your
-adapter, including its trigger token when applicable:
+adapter, including its trigger token when applicable. The smoke-test rejects
+non-HTTPS and IP-address base URLs before reading the token file:
 
 ```bash
 python3 scripts/smoke-test.py \
-  --base-url "http://$ENDPOINT_ADDRESS" \
+  --base-url "$ENDPOINT_URL" \
   --token-file /secure/flux2-endpoint-token \
   --model-slug "$MODEL_SLUG" \
   --adapter-name "$LORA_ADAPTER_NAME" \

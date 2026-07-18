@@ -4,18 +4,46 @@ from __future__ import annotations
 import argparse
 import base64
 import hashlib
+import ipaddress
 import json
 import os
 import stat
 import struct
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 from pathlib import Path
 from typing import Any
 
 
 DEFAULT_MODEL_ID = "black-forest-labs/FLUX.2-klein-base-4B"
+
+
+def validate_base_url(value: str) -> str:
+    parsed = urllib.parse.urlparse(value)
+    if parsed.scheme != "https":
+        raise ValueError("base URL must use HTTPS")
+    if not parsed.hostname:
+        raise ValueError("base URL must contain an endpoint FQDN")
+    if parsed.username or parsed.password:
+        raise ValueError("base URL must not contain credentials")
+    if parsed.query or parsed.fragment:
+        raise ValueError("base URL must not contain a query or fragment")
+    if parsed.path not in {"", "/"}:
+        raise ValueError("base URL must not contain a path")
+
+    hostname = parsed.hostname.rstrip(".")
+    try:
+        ipaddress.ip_address(hostname)
+    except ValueError:
+        pass
+    else:
+        raise ValueError("base URL must use an endpoint FQDN, not an IP address")
+    if "." not in hostname:
+        raise ValueError("base URL must contain an endpoint FQDN")
+
+    return value.rstrip("/")
 
 
 def read_token(path: Path) -> str:
@@ -99,8 +127,11 @@ def main() -> None:
     parser.add_argument("--request-timeout", type=int, default=900)
     args = parser.parse_args()
 
+    try:
+        base_url = validate_base_url(args.base_url)
+    except ValueError as error:
+        parser.error(str(error))
     token = read_token(args.token_file)
-    base_url = args.base_url.rstrip("/")
     args.output_dir.mkdir(parents=True, exist_ok=True, mode=0o700)
     os.chmod(args.output_dir, 0o700)
 
