@@ -1,0 +1,8 @@
+.pytest_cache/
+.ruff_cache/
+__pycache__/
+*.pyc
+.venv/
+adapter.safetensors
+build-metadata.json
+smoke-output/
