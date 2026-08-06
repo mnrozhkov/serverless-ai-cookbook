@@ -4,7 +4,7 @@
 
 Run GPU workloads on [Nebius Serverless](https://nebius.com/services/serverless) — no infrastructure management, per-second billing, GPU in minutes.
 
-This repo contains runnable code samples for **Serverless AI Jobs** (batch workloads that auto-terminate) and **Endpoints** (persistent HTTP-accessible services). Examples cover model training, fine-tuning, inference serving, AI agents, and scientific simulations.
+This repo contains runnable code samples for **Serverless AI Jobs** (batch workloads that auto-terminate) and **Endpoints** (persistent HTTP-accessible services), plus **1-click templates** that open the Nebius Console with fields pre-filled. Examples cover model training, fine-tuning, inference serving, AI agents, and scientific simulations.
 
 ## Quickstart (30 seconds)
 
@@ -39,6 +39,7 @@ nebius ai logs "$JOB_ID"
 Pick the section that matches your goal — each links to runnable examples:
 
 - 🚀 [**Quickstarts**](#-quickstarts) — lowest-friction first runs.
+- 📦 [**Templates**](#-templates) — 1-click Console deploy (pre-filled create forms).
 - 🏋️ [**Training**](#️-training) — model training and fine-tuning workloads.
 - ⚡ [**Inference**](#-inference) — endpoint serving and batch inference workloads.
 - 🤖 [**Agents**](#-agents) — AI gateway and agent deployments.
@@ -50,6 +51,20 @@ Lowest-friction first runs.
 
 - [`first-job`](./quickstarts/first-job.md) — run `nvidia-smi` in a Serverless AI job
 - [`first-endpoint`](./quickstarts/first-endpoint.md) — deploy a quick `nginx` endpoint
+
+### 📦 Templates
+1-click deploy into the Nebius Console — fields pre-filled; adjust before create if needed.
+
+| Template | Deploy | Modality |
+| --- | --- | --- |
+| [Qwen3-0.6B](./templates/endpoint-vllm-qwen3-0-6b/README.md) | [![Create Endpoint](./templates/assets/create-endpoint.svg)](https://console.eu.nebius.com/serverless/endpoint/create?image=vllm%2Fvllm-openai%3Av0.19.1&command=python3%20-m%20vllm.entrypoints.openai.api_server%20--model%20Qwen%2FQwen3-0.6B%20--host%200.0.0.0%20--port%208000&targetPort=8000&platform=gpu-l40s-a&preset=1gpu-8vcpu-32gb&diskSize=500Gi&shmSize=16Gi&preemptible=true) | LLM |
+| [Sana](./templates/endpoint-sana/README.md) | [![Create Endpoint](./templates/assets/create-endpoint.svg)](https://console.eu.nebius.com/serverless/endpoint/create?image=cr.eu-north1.nebius.cloud%2Fe00gw2b7v3pxetvpy7%2Fsana-serve%3Ad315ae1&targetPort=8000&platform=gpu-l40s-a&preset=1gpu-8vcpu-32gb&diskSize=500Gi&shmSize=16Gi&preemptible=true) | Text-to-image |
+| [Qwen-Image-Edit-2511](./templates/endpoint-qwen-image-edit-2511/README.md) | [![Create Endpoint](./templates/assets/create-endpoint.svg)](https://console.eu.nebius.com/serverless/endpoint/create?image=vllm%2Fvllm-omni%3Av0.24.0&command=vllm%20serve%20Qwen%2FQwen-Image-Edit-2511%20--omni%20--host%200.0.0.0%20--port%208000&targetPort=8000&platform=gpu-h100-sxm&preset=1gpu-16vcpu-200gb&diskSize=500Gi&shmSize=16Gi&preemptible=true) | Image-to-image |
+| [Wan2.1-T2V-1.3B](./templates/endpoint-wan21-t2v-1-3b/README.md) | [![Create Endpoint](./templates/assets/create-endpoint.svg)](https://console.eu.nebius.com/serverless/endpoint/create?image=vllm%2Fvllm-omni%3Av0.24.0&command=vllm%20serve%20Wan-AI%2FWan2.1-T2V-1.3B-Diffusers%20--omni%20--host%200.0.0.0%20--port%208000&targetPort=8000&platform=gpu-h100-sxm&preset=1gpu-16vcpu-200gb&diskSize=500Gi&shmSize=16Gi&preemptible=true) | Text-to-video |
+| [Wan2.2-I2V-A14B](./templates/endpoint-wan22-i2v-a14b/README.md) | [![Create Endpoint](./templates/assets/create-endpoint.svg)](https://console.eu.nebius.com/serverless/endpoint/create?image=vllm%2Fvllm-omni%3Av0.24.0&command=vllm%20serve%20Wan-AI%2FWan2.2-I2V-A14B-Diffusers%20--omni%20--host%200.0.0.0%20--port%208000&targetPort=8000&platform=gpu-h100-sxm&preset=1gpu-16vcpu-200gb&diskSize=500Gi&shmSize=16Gi&preemptible=true) | Image-to-video |
+| [Kokoro-82M](./templates/endpoint-kokoro-82m/README.md) | [![Create Endpoint](./templates/assets/create-endpoint.svg)](https://console.eu.nebius.com/serverless/endpoint/create?image=cr.eu-north1.nebius.cloud%2Fe00gw2b7v3pxetvpy7%2Fkokoro-serve%3Ad315ae1&targetPort=8000&platform=gpu-l40s-a&preset=1gpu-8vcpu-32gb&diskSize=500Gi&shmSize=16Gi&preemptible=true) | Text-to-speech |
+
+→ Full catalog (music, fine-tuning jobs, more): [templates/README.md](./templates/README.md)
 
 ### 🏋️ Training
 Model training and fine-tuning workloads.
@@ -105,6 +120,7 @@ External examples and writeups from the community running serverless workloads o
 ```
 serverless-cookbook/
 ├── quickstarts/          # Lowest-friction first runs
+├── templates/            # 1-click Console deploy templates
 ├── training/             # Model training and fine-tuning
 ├── inference/            # Endpoint serving and batch inference
 ├── agents/               # AI gateway and agent deployments
