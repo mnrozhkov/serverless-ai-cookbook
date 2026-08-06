@@ -1,7 +1,7 @@
 # Qwen3-0.6B
 
 <!-- factory:deploy -->
-[![Create Endpoint](../assets/create-endpoint.svg)](https://console.eu.nebius.com/serverless/endpoint/create?image=vllm%2Fvllm-openai%3Alatest&command=python3%20-m%20vllm.entrypoints.openai.api_server%20--model%20Qwen%2FQwen3-0.6B%20--host%200.0.0.0%20--port%208000&targetPort=8000&platform=gpu-l40s-a&preset=1gpu-8vcpu-32gb&diskSize=500Gi&shmSize=16Gi&preemptible=true)
+[![Create Endpoint](../assets/create-endpoint.svg)](https://console.eu.nebius.com/serverless/endpoint/create?image=vllm%2Fvllm-openai%3Av0.19.1&command=python3%20-m%20vllm.entrypoints.openai.api_server%20--model%20Qwen%2FQwen3-0.6B%20--host%200.0.0.0%20--port%208000&targetPort=8000&platform=gpu-l40s-a&preset=1gpu-8vcpu-32gb&diskSize=500Gi&shmSize=16Gi&preemptible=true)
 <!-- /factory:deploy -->
 
 <!-- factory:intro -->
@@ -97,7 +97,7 @@ For production, enable token auth when creating the endpoint and send
 
 ```bash
 nebius ai endpoint create \
-  --image vllm/vllm-openai:latest \
+  --image vllm/vllm-openai:v0.19.1 \
   --public \
   --platform gpu-l40s-a \
   --preset 1gpu-8vcpu-32gb \
@@ -114,4 +114,4 @@ nebius ai endpoint create \
 
 - **`502 failed to connect to local service`** — tunnel is up but the container has not bound port 8000 yet (weight download / load). Poll `/v1/models` until it returns JSON; do not treat Nebius RUNNING as “API ready”.
 - **Very slow first pull** — add optional env `HF_TOKEN` in the console; prefer a larger disk (template asks for 500 Gi) so Hub throughput is higher.
-- **Wrong image or port** — `vllm/vllm-openai:latest` on container port `8000` (`gpu-l40s-a` / `1gpu-8vcpu-32gb`, preemptible).
+- **Wrong image or port** — `vllm/vllm-openai:v0.19.1` on container port `8000` (`gpu-l40s-a` / `1gpu-8vcpu-32gb`, preemptible).

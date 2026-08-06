@@ -1,7 +1,7 @@
 # ACE-Step 1.5
 
 <!-- factory:deploy -->
-[![Create Endpoint](../assets/create-endpoint.svg)](https://console.eu.nebius.com/serverless/endpoint/create?image=docker.io%2Fmnrozhkov%2Facestep-serve&targetPort=8000&platform=gpu-h100-sxm&preset=1gpu-16vcpu-200gb&diskSize=500Gi&shmSize=16Gi&preemptible=true)
+[![Create Endpoint](../assets/create-endpoint.svg)](https://console.eu.nebius.com/serverless/endpoint/create?image=cr.eu-north1.nebius.cloud%2Fe00gw2b7v3pxetvpy7%2Facestep-serve%3Ad315ae1&targetPort=8000&platform=gpu-h100-sxm&preset=1gpu-16vcpu-200gb&diskSize=500Gi&shmSize=16Gi&preemptible=true)
 <!-- /factory:deploy -->
 
 <!-- factory:intro -->
@@ -179,7 +179,7 @@ For production, enable token auth when creating the endpoint and send
 
 ```bash
 nebius ai endpoint create \
-  --image docker.io/mnrozhkov/acestep-serve \
+  --image cr.eu-north1.nebius.cloud/e00gw2b7v3pxetvpy7/acestep-serve:d315ae1 \
   --public \
   --platform gpu-h100-sxm \
   --preset 1gpu-16vcpu-200gb \
@@ -200,4 +200,4 @@ nebius ai endpoint create \
 | `502 failed to connect to local service` | Tunnel up but port 8000 not bound yet — poll `/v1/models`; RUNNING ≠ API ready |
 | Slow first pull | Add optional `HF_TOKEN`; disk throughput scales with size — template asks for 500 Gi |
 | `shm` errors in worker logs | Request `--shm-size 16Gi` (set in deploy configuration) |
-| Wrong image or port | `docker.io/mnrozhkov/acestep-serve:latest` on container port `8000` (`gpu-h100-sxm` / `1gpu-16vcpu-200gb`, preemptible) |
+| Wrong image or port | `cr.eu-north1.nebius.cloud/e00gw2b7v3pxetvpy7/acestep-serve:d315ae1` on container port `8000` (`gpu-h100-sxm` / `1gpu-16vcpu-200gb`, preemptible) |

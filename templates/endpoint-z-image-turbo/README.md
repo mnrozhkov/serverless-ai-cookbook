@@ -1,7 +1,7 @@
 # Z-Image-Turbo
 
 <!-- factory:deploy -->
-[![Create Endpoint](../assets/create-endpoint.svg)](https://console.eu.nebius.com/serverless/endpoint/create?image=vllm%2Fvllm-omni%3Alatest&command=vllm%20serve%20Tongyi-MAI%2FZ-Image-Turbo%20--omni%20--host%200.0.0.0%20--port%208000&targetPort=8000&platform=gpu-h100-sxm&preset=1gpu-16vcpu-200gb&diskSize=500Gi&shmSize=16Gi&preemptible=true)
+[![Create Endpoint](../assets/create-endpoint.svg)](https://console.eu.nebius.com/serverless/endpoint/create?image=vllm%2Fvllm-omni%3Av0.24.0&command=vllm%20serve%20Tongyi-MAI%2FZ-Image-Turbo%20--omni%20--host%200.0.0.0%20--port%208000&targetPort=8000&platform=gpu-h100-sxm&preset=1gpu-16vcpu-200gb&diskSize=500Gi&shmSize=16Gi&preemptible=true)
 <!-- /factory:deploy -->
 
 <!-- factory:intro -->
@@ -100,7 +100,7 @@ For production, enable token auth when creating the endpoint and send
 
 ```bash
 nebius ai endpoint create \
-  --image vllm/vllm-omni:latest \
+  --image vllm/vllm-omni:v0.24.0 \
   --public \
   --platform gpu-h100-sxm \
   --preset 1gpu-16vcpu-200gb \
@@ -118,4 +118,4 @@ nebius ai endpoint create \
 - **`502 failed to connect to local service`** — tunnel is up but the container has not bound port 8000 yet (weight download / load). Poll `/v1/models` until it returns JSON; do not treat Nebius RUNNING as “API ready”.
 - **Very slow first pull** — add optional env `HF_TOKEN` in the console; prefer a larger disk (template asks for 500 Gi) so Hub throughput is higher.
 - **Blurry / odd output with high step count** — do not raise `num_inference_steps` into the twenties; keep ~9 and `guidance_scale: 0`.
-- **Wrong image or port** — `vllm/vllm-omni:latest` on container port `8000` (`gpu-h100-sxm` / `1gpu-16vcpu-200gb`, preemptible).
+- **Wrong image or port** — `vllm/vllm-omni:v0.24.0` on container port `8000` (`gpu-h100-sxm` / `1gpu-16vcpu-200gb`, preemptible).

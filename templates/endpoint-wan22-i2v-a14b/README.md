@@ -1,7 +1,7 @@
 # Wan2.2-I2V-A14B
 
 <!-- factory:deploy -->
-[![Create Endpoint](../assets/create-endpoint.svg)](https://console.eu.nebius.com/serverless/endpoint/create?image=vllm%2Fvllm-omni%3Alatest&command=vllm%20serve%20Wan-AI%2FWan2.2-I2V-A14B-Diffusers%20--omni%20--host%200.0.0.0%20--port%208000&targetPort=8000&platform=gpu-h100-sxm&preset=1gpu-16vcpu-200gb&diskSize=500Gi&shmSize=16Gi&preemptible=true)
+[![Create Endpoint](../assets/create-endpoint.svg)](https://console.eu.nebius.com/serverless/endpoint/create?image=vllm%2Fvllm-omni%3Av0.24.0&command=vllm%20serve%20Wan-AI%2FWan2.2-I2V-A14B-Diffusers%20--omni%20--host%200.0.0.0%20--port%208000&targetPort=8000&platform=gpu-h100-sxm&preset=1gpu-16vcpu-200gb&diskSize=500Gi&shmSize=16Gi&preemptible=true)
 <!-- /factory:deploy -->
 
 <!-- factory:intro -->
@@ -94,7 +94,7 @@ For production, enable token auth when creating the endpoint and send
 
 ```bash
 nebius ai endpoint create \
-  --image vllm/vllm-omni:latest \
+  --image vllm/vllm-omni:v0.24.0 \
   --public \
   --platform gpu-h100-sxm \
   --preset 1gpu-16vcpu-200gb \
@@ -113,4 +113,4 @@ nebius ai endpoint create \
 - **Very slow first pull** — add optional env `HF_TOKEN` in the console; prefer a larger disk (template asks for 500 Gi) so Hub throughput is higher.
 - **Bad motion / artifacts** — confirm Wan2.2 480p params (`flow_shift=12.0`, `boundary_ratio=0.875`, guidance 1.0).
 - **Wrong upload field** — use `input_reference`, not `image`.
-- **Wrong image or port** — `vllm/vllm-omni:latest` on container port `8000` (`gpu-h100-sxm` / `1gpu-16vcpu-200gb`, preemptible).
+- **Wrong image or port** — `vllm/vllm-omni:v0.24.0` on container port `8000` (`gpu-h100-sxm` / `1gpu-16vcpu-200gb`, preemptible).

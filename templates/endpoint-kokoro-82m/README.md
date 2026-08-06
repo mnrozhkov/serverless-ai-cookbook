@@ -1,7 +1,7 @@
 # Kokoro-82M
 
 <!-- factory:deploy -->
-[![Create Endpoint](../assets/create-endpoint.svg)](https://console.eu.nebius.com/serverless/endpoint/create?image=docker.io%2Fmnrozhkov%2Fkokoro-serve&targetPort=8000&platform=gpu-l40s-a&preset=1gpu-8vcpu-32gb&diskSize=500Gi&shmSize=16Gi&preemptible=true)
+[![Create Endpoint](../assets/create-endpoint.svg)](https://console.eu.nebius.com/serverless/endpoint/create?image=cr.eu-north1.nebius.cloud%2Fe00gw2b7v3pxetvpy7%2Fkokoro-serve%3Ad315ae1&targetPort=8000&platform=gpu-l40s-a&preset=1gpu-8vcpu-32gb&diskSize=500Gi&shmSize=16Gi&preemptible=true)
 <!-- /factory:deploy -->
 
 <!-- factory:intro -->
@@ -110,7 +110,7 @@ For production, enable token auth when creating the endpoint and send
 
 ```bash
 nebius ai endpoint create \
-  --image docker.io/mnrozhkov/kokoro-serve \
+  --image cr.eu-north1.nebius.cloud/e00gw2b7v3pxetvpy7/kokoro-serve:d315ae1 \
   --public \
   --platform gpu-l40s-a \
   --preset 1gpu-8vcpu-32gb \
@@ -127,4 +127,4 @@ nebius ai endpoint create \
 - **`espeak-ng not found`** — image build skipped `espeak-ng` (required for English G2P fallback).
 - **Empty or failed MP3** — `ffmpeg` missing or synthesis error; check endpoint logs.
 - **Wrong voice locale** — voice prefix must match G2P locale (e.g. `bf_*` needs British English).
-- **Wrong image or port** — `docker.io/mnrozhkov/kokoro-serve:latest` on port `8000` (`gpu-l40s-a` / `1gpu-8vcpu-32gb`).
+- **Wrong image or port** — `cr.eu-north1.nebius.cloud/e00gw2b7v3pxetvpy7/kokoro-serve:d315ae1` on port `8000` (`gpu-l40s-a` / `1gpu-8vcpu-32gb`).

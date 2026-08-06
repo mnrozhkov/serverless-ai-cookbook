@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="20" role="img" aria-label="Create Job">
+<svg xmlns="http://www.w3.org/2000/svg" width="138" height="20" role="img" aria-label="Create Job">
   <title>Create Job</title>
-  <rect width="110" height="20" rx="3" fill="#e0ff4f"/>
+  <rect width="138" height="20" rx="3" fill="#e0ff4f"/>
   <rect width="32" height="20" rx="3" fill="#052b42"/>
   <rect x="28" width="4" height="20" fill="#052b42"/>
   <g transform="translate(8.5,3.5) scale(0.0751) translate(-72,-68)">
@@ -8,5 +8,5 @@
     <path fill="#e0ff4f" d="M85.2,140.3v87.5h29.1v-122.7s-29.1,1.8-29.1,35.2Z"/>
     <path fill="#e0ff4f" d="M230.7,206.7s29.1-1.8,29.1-35.2v-87.5h-29.1v122.7Z"/>
   </g>
-  <text x="71" y="14" font-family="Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif" font-size="11" font-weight="600" fill="#052b42" text-anchor="middle">Create Job</text>
+  <text x="85" y="14" font-family="Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif" font-size="11" font-weight="600" fill="#052b42" text-anchor="middle">Create Job</text>
 </svg>
