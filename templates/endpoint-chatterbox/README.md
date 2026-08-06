@@ -131,9 +131,6 @@ curl -sS localhost:8000/v1/models
 
 ## Toward production
 
-- **Permanent image registry:** Catalog one-click Deploy is blocked until a public
-  registry hosts the serving image (factory ADR-0003). Build and push your own ref for
-  now.
 - **Voice cloning uploads:** Add authenticated multipart storage (S3 / volume) and pass
   `audio_prompt_path` from uploaded clips instead of bundled presets only.
 - **Turbo / multilingual:** Swap `ChatterboxTTS` for `ChatterboxTurboTTS` or
@@ -194,3 +191,4 @@ nebius ai endpoint create \
 | `speed is not supported` | OpenAI `speed` is accepted in the schema but Chatterbox has no speed knob in v1 |
 | `502 failed to connect to local service` | Tunnel up but port 8000 not bound yet — poll `/v1/models`; RUNNING ≠ API ready |
 | Slow first pull | Add optional `HF_TOKEN`; disk throughput scales with size — template asks for 500 Gi |
+| Wrong image or port | `docker.io/mnrozhkov/chatterbox-serve:latest` on container port `8000` (`gpu-h100-sxm` / `1gpu-16vcpu-200gb`, preemptible) |

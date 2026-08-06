@@ -126,4 +126,4 @@ nebius ai endpoint create \
 - **Very slow first pull** — add optional env `HF_TOKEN`; prefer 500 Gi disk for Hub throughput.
 - **`no CUDA device`** — deployed on a CPU platform/preset.
 - **Black or empty images** — keep text encoder / VAE in bf16; transformer stays fp16.
-- **Wrong image or port** — `docker.io/mnrozhkov/sana-serve` on container port `8000` (`gpu-l40s-a` / `1gpu-8vcpu-32gb`, preemptible). Catalog one-click needs a permanent public registry (ADR-0003).
+- **Wrong image or port** — `docker.io/mnrozhkov/sana-serve:latest` on container port `8000` (`gpu-l40s-a` / `1gpu-8vcpu-32gb`, preemptible).

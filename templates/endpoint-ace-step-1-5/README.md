@@ -138,9 +138,6 @@ curl -sS localhost:8000/v1/models
 
 ## Toward production
 
-- **Permanent image registry:** Catalog one-click Deploy is blocked until a public
-  registry hosts the serving image (factory ADR-0003). Build and push your own ref for
-  now.
 - **Async jobs:** Expose upstream `/release_task` + `/query_result` directly (or via a
   gateway) when clients should not hold HTTP connections for minutes.
 - **Quality vs latency:** Set `ACESTEP_INIT_LLM=true` and `thinking: true` (plus more
@@ -203,3 +200,4 @@ nebius ai endpoint create \
 | `502 failed to connect to local service` | Tunnel up but port 8000 not bound yet — poll `/v1/models`; RUNNING ≠ API ready |
 | Slow first pull | Add optional `HF_TOKEN`; disk throughput scales with size — template asks for 500 Gi |
 | `shm` errors in worker logs | Request `--shm-size 16Gi` (set in deploy configuration) |
+| Wrong image or port | `docker.io/mnrozhkov/acestep-serve:latest` on container port `8000` (`gpu-h100-sxm` / `1gpu-16vcpu-200gb`, preemptible) |

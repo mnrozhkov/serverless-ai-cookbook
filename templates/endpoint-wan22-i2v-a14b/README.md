@@ -26,7 +26,8 @@ first Hub pull is authenticated and usually faster (not required).
 Use the **Diffusers** repo id (`Wan-AI/Wan2.2-I2V-A14B-Diffusers`). Upload the
 source frame as multipart field `input_reference` (not `image`). Wan2.2 I2V at
 480p needs `flow_shift=12.0`, `boundary_ratio=0.875`, and
-`guidance_scale` / `guidance_scale_2` = `1.0`.
+`guidance_scale` / `guidance_scale_2` = `1.0`. Run the curl from this package
+directory so `samples/image.png` resolves (or pass an absolute path).
 
 ### curl
 
@@ -37,7 +38,7 @@ curl -sS "$BASE_URL/v1/models"
 
 curl -sS \
   -F "model=Wan-AI/Wan2.2-I2V-A14B-Diffusers" \
-  -F "input_reference=@./frame.png" \
+  -F "input_reference=@samples/image.png" \
   -F "prompt=Camera slowly pushes in, smooth cinematic motion" \
   -F "size=832x480" \
   -F "num_frames=17" \

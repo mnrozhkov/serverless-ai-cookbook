@@ -127,4 +127,4 @@ nebius ai endpoint create \
 - **`espeak-ng not found`** — image build skipped `espeak-ng` (required for English G2P fallback).
 - **Empty or failed MP3** — `ffmpeg` missing or synthesis error; check endpoint logs.
 - **Wrong voice locale** — voice prefix must match G2P locale (e.g. `bf_*` needs British English).
-- **Wrong image or port** — `docker.io/mnrozhkov/kokoro-serve` on port `8000` (`gpu-l40s-a` / `1gpu-8vcpu-32gb`). Catalog one-click needs a permanent public registry (ADR-0003).
+- **Wrong image or port** — `docker.io/mnrozhkov/kokoro-serve:latest` on port `8000` (`gpu-l40s-a` / `1gpu-8vcpu-32gb`).

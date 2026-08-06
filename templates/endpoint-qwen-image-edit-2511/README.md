@@ -24,7 +24,8 @@ Optional: in the console, add env `HF_TOKEN=<your Hugging Face token>` so the
 first Hub pull is authenticated and usually faster (not required).
 
 Edit is multipart `POST /v1/images/edits` (image file + prompt) — not JSON
-`/v1/images/generations`.
+`/v1/images/generations`. Run the curl from this package directory so
+`samples/image.png` resolves (or pass an absolute path).
 
 ### curl
 
@@ -35,7 +36,7 @@ curl -sS "$BASE_URL/v1/models"
 
 curl -sS -X POST "$BASE_URL/v1/images/edits" \
   -F "model=Qwen/Qwen-Image-Edit-2511" \
-  -F "image=@./input.png" \
+  -F "image=@samples/image.png" \
   -F "prompt=make the sky a dramatic sunset" \
   -F "size=1024x1024" \
   -F "output_format=png" \
@@ -54,7 +55,7 @@ import urllib.request
 from pathlib import Path
 
 base = os.environ["BASE_URL"].rstrip("/")
-image_path = Path("input.png")
+image_path = Path("samples/image.png")
 
 # Wait until the API is up (not just Nebius RUNNING)
 for _ in range(60):  # up to ~15 min
